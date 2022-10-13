@@ -2,10 +2,13 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Logging {
+    /// <summary>
+    /// サイズ，または日付ごとにログローテーションするやつ  なんかカオス化してて草()
+    /// </summary>
     public class RotatingFileHandler : FileHandler {
         public enum SizeUnit {
             B = 1,
@@ -20,10 +23,14 @@ namespace Logging {
 
         private RotateBy rotateMode;
         private static int rotateSpan;
+        public static int RotateSpan { get; set; }
         private static float rotateSize;
+        public static int RotateSize { get; set; }
         private static string defaultFileName = DateTime.Today.ToString("yyMMdd");
 
         public new Level MinLevel { get; set; } = Level.Disabled;
+
+
         public new string LogFilePath {
             get { return $"{LogFileDirectory}/{LogFileName}{LogFileExtension}"; } }
 
@@ -62,9 +69,9 @@ namespace Logging {
                 string[] sorted = files.OrderBy(f => File.GetCreationTime(f)).ToArray();
                 if (sorted.Length > 1) {
                     string oldName = Path.GetFileNameWithoutExtension(sorted[sorted.Length - 2]);
-                    string oldFullPath = $"{LogFileDirectory}/{oldName}{LogFileExtension}";
+                    string oldPath = $"{LogFileDirectory}/{oldName}{LogFileExtension}";
                     string newFullPath = $"{LogFileDirectory}/{oldName}-{sorted.Length - 1}{LogFileExtension}";
-                    File.Move(oldFullPath, newFullPath);
+                    File.Move(oldPath, newFullPath);
                 }
             }
             bool IsExistLog() {
@@ -75,7 +82,6 @@ namespace Logging {
                 return isExists;
             }
 
-            SetCurrentLogFileName();
             switch (rotateMode) {
                 case RotateBy.Date:
                     RotateByDate();
@@ -123,6 +129,7 @@ namespace Logging {
                 return Path.GetFileNameWithoutExtension(latest);
             }
 
+            // Function main
             switch (rotateMode) {
                 case RotateBy.Date:
                     LogFileName = GetCurrentLogFileNameByDate();
@@ -131,6 +138,10 @@ namespace Logging {
                     LogFileName = GetCurrentLogFileNameBySize();
                     break;
             }
+        }
+
+        public void LoadSettingsRotHandler() {
+
         }
     }
 }

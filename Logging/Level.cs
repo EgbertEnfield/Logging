@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Logging {
+﻿namespace Logging {
     public enum Level {
         Debug,
         Info,
         Warn,
         Error,
-        Exception,
+        Except,
         Critical,
-        Disabled = 9999,
+        Disabled = 9999, // デフォとしてインスタンス化したクラスを無効化する用
     }
 }

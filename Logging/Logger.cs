@@ -13,6 +13,11 @@ namespace Logging {
         private StreamHandler streamHandler = new StreamHandler();
         private RotatingFileHandler rotatingFileHandler = new RotatingFileHandler();
 
+        /// <summary>
+        /// ロガーを設定する
+        /// </summary>
+        /// <param name="formatter">ログのフォーマット</param>
+        /// <param name="handlers">使いたい機能のインスタンスを入れる</param>
         public Logger(Formatter formatter, params object[] handlers) {
             this.formatter = formatter;
             for (int i = 0; i < handlers.Length; i++) {
@@ -31,9 +36,9 @@ namespace Logging {
         public void Critical(string message, ConsoleColor color = ConsoleColor.White) =>
             LoggerCommon(Level.Critical, message, color);
 
-        public void Exception(string message, Exception ex, ConsoleColor color = ConsoleColor.White) {
+        public void Except(string message, Exception ex, ConsoleColor color = ConsoleColor.White) {
             message = $"{message}\n  {ex.GetType().Name}: {ex.Message} at {ex.Source}\n  {ex.StackTrace}";
-            LoggerCommon(Level.Exception, message, color);
+            LoggerCommon(Level.Except, message, color);
         }
 
         public void Error(string message, ConsoleColor color = ConsoleColor.White) =>

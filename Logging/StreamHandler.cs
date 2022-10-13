@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logging {
+    /// <summary>
+    /// ログ内容をコンソールに表示させるやつ
+    /// </summary>
     public class StreamHandler {
         public bool IsEnable { get; set; }
         public Level MinLevel { get; set; } = Level.Disabled;

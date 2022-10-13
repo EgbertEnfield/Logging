@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logging {
+    /// <summary>
+    /// 任意の特定ファイルにどんどん追記していくやつ
+    /// </summary>
     public class FileHandler {
         protected string LogFileDirectory { get; set; }
         protected string LogFileExtension { get; set; }
@@ -22,10 +25,17 @@ namespace Logging {
             LogFileExtension = Path.GetExtension(fullPath);
             LogFileName = Path.GetFileNameWithoutExtension(fullPath);
         }
+        /// <summary>
+        /// プロパティにデフォルトとして突っ込む用 使っても何もしない
+        /// </summary>
         internal FileHandler() {
             MinLevel = Level.Disabled;
         }
 
+        /// <summary>
+        /// 特定のファイルにログを追記していく
+        /// </summary>
+        /// <param name="message">ログ内容</param>
         public void StreamFile(string message) {
             bool isAppend = Mode == FileMode.Append ? true : false;
             using (StreamWriter writer = new StreamWriter(LogFilePath, isAppend)) {

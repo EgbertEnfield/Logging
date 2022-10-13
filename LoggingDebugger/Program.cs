@@ -16,7 +16,7 @@ namespace LoggingDebugger {
             var streamHandler = new StreamHandler() {
                 MinLevel = Level.Debug,
             };
-            var rotatingFileHandler = new RotatingFileHandler("C:/Users/EosinY/Desktop/loglog", ".log", 200, RotatingFileHandler.SizeUnit.B) {
+            var rotatingFileHandler = new RotatingFileHandler("C:/Users/EosinY/Desktop/loglog", ".log", 1, RotatingFileHandler.SizeUnit.B) {
                 MinLevel = Level.Debug,
             };
             var logger = new Logger(formatter, streamHandler, rotatingFileHandler);
@@ -26,6 +26,7 @@ namespace LoggingDebugger {
             logger.Warn("shhhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiittt");
 
             Console.WriteLine($"{rotatingFileHandler.LogFilePath} {File.Exists(rotatingFileHandler.LogFilePath)}");
+            Console.Read();
         }
     }
 }

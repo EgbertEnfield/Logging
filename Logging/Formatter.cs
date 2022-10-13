@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Logging {
+    /// <summary>
+    /// ログフォーマットを決めるやつ  必ず使う
+    /// </summary>
     public class Formatter {
         public string Format { get; set; }
         public string DateFormat { get; set; }
