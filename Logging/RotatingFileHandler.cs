@@ -34,16 +34,34 @@ namespace Logging {
         public new string LogFilePath {
             get { return $"{LogFileDirectory}/{LogFileName}{LogFileExtension}"; } }
 
+        /// <summary>
+        /// 日付ベースでローテートさせる
+        /// </summary>
+        /// <param name="logDir">ログディレクトリ</param>
+        /// <param name="logExt">ログの拡張子</param>
+        /// <param name="rotSpan">最新のログが作られてからローテートするまでの日数</param>
         public RotatingFileHandler(string logDir, string logExt, int rotSpan) : base($"{logDir}/{defaultFileName}{logExt}") {
             rotateMode = RotateBy.Date;
             rotateSpan = rotSpan;
             SetCurrentLogFileName();
         }
+
+        /// <summary>
+        /// サイズベースでローテートさせる
+        /// </summary>
+        /// <param name="logDir">ログディレクトリ</param>
+        /// <param name="logExt">ログの拡張子</param>
+        /// <param name="rotSize">ローテーションのサイズ閾値</param>
+        /// <param name="unit">単位</param>
         public RotatingFileHandler(string logDir, string logExt, float rotSize, SizeUnit unit) : base($"{logDir}/{defaultFileName}{logExt}") {
             rotateMode = RotateBy.Size;
             rotateSize = rotSize * (float)unit;
             SetCurrentLogFileName();
         }
+
+        /// <summary>
+        /// プロパティにデフォルトとして突っ込む用 使わない
+        /// </summary>
         internal RotatingFileHandler() {
             MinLevel = Level.Disabled;
         }
