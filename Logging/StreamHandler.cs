@@ -9,12 +9,21 @@ namespace Logging {
     /// ログ内容をコンソールに表示させるやつ
     /// </summary>
     public class StreamHandler {
+        public enum StreamType {
+            StdIO,
+            StdErr
+        }
         public bool IsEnable { get; set; }
         public Level MinLevel { get; set; } = Level.Disabled;
 
-        public void StreamConsole(string message, ConsoleColor color) {
+        public void StreamConsole(string message, ConsoleColor color, StreamType type = StreamType.StdIO) {
             Console.ForegroundColor = color;
-            Console.WriteLine(message);
+            if (type == StreamType.StdIO) {
+                Console.WriteLine(message);
+            }
+            else if (type == StreamType.StdErr) {
+                Console.Error.WriteLine(message);
+            }
             Console.ResetColor();
         }
     }
