@@ -10,8 +10,9 @@ namespace LoggingDebugger {
     internal class Program {
         static void Main(string[] args) {
             var formatter = new Formatter() {
-                Format = "{asctime} [{level}] {message}",
+                Format = 
                 DateFormat = "yy-MM-dd hh:mm:ss",
+
             };
             var streamHandler = new StreamHandler() {
                 MinLevel = Level.Debug,
