@@ -1,4 +1,4 @@
-﻿namespace Logging {
+﻿namespace LoggingNcore {
     public enum Level {
         Debug,
         Info,

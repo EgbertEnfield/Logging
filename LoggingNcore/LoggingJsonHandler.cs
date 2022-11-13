@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Logging {
+namespace LoggingNcore {
     internal class LoggingJsonHandler {
         internal void LoadJson(string path) {
             using (var sr = new StreamReader(path)) {

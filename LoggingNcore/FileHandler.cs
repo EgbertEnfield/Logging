@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logging {
+namespace LoggingNcore {
     /// <summary>
     /// 任意の特定ファイルにどんどん追記していくやつ
     /// </summary>

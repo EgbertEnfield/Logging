@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logging {
+namespace LoggingNcore {
     internal static class LoggerError {
         public enum Status {
             [StatusInfo("Some format components are missing.")]
