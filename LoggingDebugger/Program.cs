@@ -10,9 +10,8 @@ namespace LoggingDebugger {
     internal class Program {
         static void Main(string[] args) {
             var formatter = new Formatter() {
-                Format = 
+                Format = $"{FormatComps.TimeStamp} [{FormatComps.LogLevel}] {FormatComps.Message}",
                 DateFormat = "yy-MM-dd hh:mm:ss",
-
             };
             var streamHandler = new StreamHandler() {
                 MinLevel = Level.Debug,

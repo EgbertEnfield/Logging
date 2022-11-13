@@ -29,7 +29,11 @@ namespace Logging {
         }
 
         public Formatter() {
-
+            bool isProper = IsProperFormat();
+            if (!isProper) {
+                var err = LoggerError.Status.DateFormatNotDefined;
+                Console.Error.WriteLine(err.GetStatusInfo());
+            }
         }
 
         private bool IsProperFormat() {
@@ -106,7 +110,4 @@ namespace Logging {
             get { return "{message}"; }
         }
     }
-
-
-
 }

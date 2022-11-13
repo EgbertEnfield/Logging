@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Logging {
     internal static class LoggerError {
-        public enum Status {         
+        public enum Status {
+            [StatusInfo("Some format components are missing.")]
+            IllegalFormat,
+            [StatusInfo("Format is not defined.")]
             FormatNotDefined,
+            [StatusInfo("DateFormat is not defined.")]
             DateFormatNotDefined,
             [StatusInfo("0xE381AAE38293E381A7E38284E998AAE7A59EE996A2E4BF82E784A1E38184E38284E3828D21")]
             NullReferenceException
