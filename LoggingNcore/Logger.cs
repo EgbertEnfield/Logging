@@ -15,6 +15,7 @@ namespace LoggingNcore {
 
         /// <summary>
         /// ロガーを設定する
+        /// TODO: ここでフォーマッタ，ハンドラの不正をチェックした方がいいんじゃないか説
         /// </summary>
         /// <param name="formatter">ログのフォーマット</param>
         /// <param name="handlers">使いたい機能のインスタンスを入れる</param>
