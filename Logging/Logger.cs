@@ -19,7 +19,8 @@ namespace Logging {
         /// <param name="formatter">ログのフォーマット</param>
         /// <param name="handlers">使いたい機能のインスタンスを入れる</param>
         public Logger(Formatter formatter, params object[] handlers) {
-            this.formatter = formatter;
+            this.formatter = formatter.CheckFormat() ? formatter : null;
+
             for (int i = 0; i < handlers.Length; i++) {
                 if (handlers[i].GetType().Name == typeof(FileHandler).Name) {
                     fileHandler = (FileHandler)handlers[i];
@@ -30,6 +31,11 @@ namespace Logging {
                 else if (handlers[i].GetType().Name == typeof(RotatingFileHandler).Name) {
                     rotatingFileHandler = (RotatingFileHandler)handlers[i];
                 }
+            }
+
+            if(this.formatter is null) {
+                var err = LoggerError.Status.FormatNotDefined;
+                throw new FormatException(err.GetStatusInfo());
             }
         }
 

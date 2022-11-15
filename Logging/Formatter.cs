@@ -28,11 +28,7 @@ namespace Logging {
             Message = 0x4
         }
 
-        public Formatter() {
-            bool isProper = IsProperFormat();
-        }
-
-        private bool IsProperFormat() {
+        internal bool CheckFormat() {
             int flag = 0;
             int errFlag = 0;
             string format = this.Format;
