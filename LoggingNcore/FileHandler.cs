@@ -37,7 +37,7 @@ namespace LoggingNcore {
         /// </summary>
         /// <param name="message">ログ内容</param>
         public void StreamFile(string message) {
-            bool isAppend = Mode == FileMode.Append ? true : false;
+            bool isAppend = (Mode == FileMode.Append) ? true : false;
             using (StreamWriter writer = new StreamWriter(LogFilePath, isAppend)) {
                 if (!File.Exists(LogFilePath)) {
                     CreateLog(LogFilePath);

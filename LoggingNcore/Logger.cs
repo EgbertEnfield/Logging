@@ -33,25 +33,20 @@ namespace LoggingNcore {
             }
         }
 
-        public void Critical(string message, ConsoleColor color = ConsoleColor.White) =>
-            LoggerCommon(Level.Critical, message, color);
+        public void Critical(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Critical, message, color);
 
         public void Except(string message, Exception ex, ConsoleColor color = ConsoleColor.White) {
             message = $"{message}\n  {ex.GetType().Name}: {ex.Message} at {ex.Source}\n  {ex.StackTrace}";
             LoggerCommon(Level.Except, message, color);
         }
 
-        public void Error(string message, ConsoleColor color = ConsoleColor.White) =>
-            LoggerCommon(Level.Error, message, color);
+        public void Error(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Error, message, color);
 
-        public void Warn(string message, ConsoleColor color = ConsoleColor.White) =>
-            LoggerCommon(Level.Warn, message, color);
+        public void Warn(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Warn, message, color);
 
-        public void Info(string message, ConsoleColor color = ConsoleColor.White) =>
-            LoggerCommon(Level.Info, message, color);
+        public void Info(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Info, message, color);
 
-        public void Debug(string message, ConsoleColor color = ConsoleColor.White) =>
-            LoggerCommon(Level.Debug, message, color);
+        public void Debug(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Debug, message, color);
 
         private void LoggerCommon(Level level, string message, ConsoleColor color) {
             string logMessage = this.formatter.BuildLogMessage(level, message);
