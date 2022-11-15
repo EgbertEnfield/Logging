@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LoggingNcore {
+namespace Logging.NetCore {
     /// <summary>
     /// ログフォーマットを決めるやつ  必ず使う
     /// </summary>

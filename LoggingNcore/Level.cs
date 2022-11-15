@@ -1,4 +1,4 @@
-﻿namespace LoggingNcore {
+﻿namespace Logging.NetCore {
     public enum Level {
         Debug,
         Info,

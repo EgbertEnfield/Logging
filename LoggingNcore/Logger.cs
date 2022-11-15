@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoggingNcore {
+namespace Logging.NetCore {
     public class Logger {
         private Formatter formatter;
         private FileHandler fileHandler = new FileHandler();

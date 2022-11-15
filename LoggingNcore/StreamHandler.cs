@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoggingNcore{
+namespace Logging.NetCore{
     /// <summary>
     /// ログ内容をコンソールに表示させるやつ
     /// </summary>

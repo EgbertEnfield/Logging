@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace LoggingNcore {
+namespace Logging.NetCore {
     /// <summary>
     /// サイズ，または日付ごとにログローテーションするやつ  なんかカオス化してて草()
     /// </summary>

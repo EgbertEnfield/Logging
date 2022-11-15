@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoggingNcore {
+namespace Logging.NetCore {
     internal static class SettingsGetters {
         internal static void GetSettings() {
             string fileName = Directory.GetCurrentDirectory() + "Settings.json";
