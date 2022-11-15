@@ -28,26 +28,15 @@ namespace LoggingNcore {
             Message = 0x4
         }
 
-        public Formatter() {
+        public Formatter(string format, string dateFormat) {
+            this.Format = format;
+            this.DateFormat = dateFormat;
+
             bool isProper = IsProperFormat();
-            if (!isProper) {
-                var err = LoggerError.Status.DateFormatNotDefined;
-                Console.Error.WriteLine(err.GetStatusInfo());
-            }
+            Console.WriteLine($"Format result: {isProper}");
         }
 
         private bool IsProperFormat() {
-            if (string.IsNullOrEmpty(this.DateFormat)) {
-                var err = LoggerError.Status.DateFormatNotDefined;
-                Console.Error.WriteLine(err.GetStatusInfo());
-                return false;
-            }
-            if (string.IsNullOrEmpty(this.Format)) {
-                var err = LoggerError.Status.FormatNotDefined;
-                Console.Error.WriteLine(err.GetStatusInfo());
-                return false;
-            }
-
             int flag = 0;
             int errFlag = 0;
             string format = this.Format;
