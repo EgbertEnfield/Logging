@@ -28,15 +28,7 @@ namespace Logging.NetCore {
             Message = 0x4
         }
 
-        public Formatter(string format, string dateFormat) {
-            this.Format = format;
-            this.DateFormat = dateFormat;
-
-            bool isProper = IsProperFormat();
-            Console.WriteLine($"Format result: {isProper}");
-        }
-
-        private bool IsProperFormat() {
+        internal bool CheckFormat() {
             int flag = 0;
             int errFlag = 0;
             string format = this.Format;
