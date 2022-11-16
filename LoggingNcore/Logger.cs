@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 namespace Logging.NetCore {
     public class Logger {
         private Formatter? formatter;
-        private FileHandler fileHandler = new FileHandler();
-        private StreamHandler streamHandler = new StreamHandler();
-        private RotatingFileHandler rotatingFileHandler = new RotatingFileHandler();
+        private FileHandler? fileHandler = null;
+        private StreamHandler? streamHandler = null;
+        private RotatingFileHandler? rotatingFileHandler = null;
 
         /// <summary>
         /// ロガーを設定する
-        /// TODO: ここでフォーマッタ，ハンドラの不正をチェックした方がいいんじゃないか説
         /// </summary>
         /// <param name="formatter">ログのフォーマット</param>
         /// <param name="handlers">使いたい機能のインスタンスを入れる</param>
@@ -56,16 +55,12 @@ namespace Logging.NetCore {
         public void Debug(string message, ConsoleColor color = ConsoleColor.White) => LoggerCommon(Level.Debug, message, color);
 
         private void LoggerCommon(Level level, string message, ConsoleColor color) {
-            string logMessage = this.formatter.BuildLogMessage(level, message);
-            if ((int)streamHandler.MinLevel <= (int)level) {
-                streamHandler.StreamConsole(logMessage, color);
-            }
-            if ((int)fileHandler.MinLevel <= (int)level) {
-                fileHandler.StreamFile(logMessage);
-            }
-            if ((int)rotatingFileHandler.MinLevel <= (int)level) {
-                rotatingFileHandler.RotateLog(logMessage);
-            }
+            string logMessage = this.formatter!.BuildLogMessage(level, message);
+            
+            // Handlerがnullだったら実行されない (多分)
+            streamHandler?.StreamConsole(logMessage, color);
+            fileHandler?.StreamFile(logMessage);
+            rotatingFileHandler?.RotateLog(logMessage);
         }
     }
 }

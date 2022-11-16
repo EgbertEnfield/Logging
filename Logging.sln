@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingDebugger", "LoggingD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingNcore", "LoggingNcore\LoggingNcore.csproj", "{220E5831-9CCD-435F-8ADB-68F017442AC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NcoreLoggingTester", "NcoreLoggingTester\NcoreLoggingTester.csproj", "{745BFC22-CAE0-4131-8AA3-CB637B91EB53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{220E5831-9CCD-435F-8ADB-68F017442AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{220E5831-9CCD-435F-8ADB-68F017442AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{220E5831-9CCD-435F-8ADB-68F017442AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745BFC22-CAE0-4131-8AA3-CB637B91EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745BFC22-CAE0-4131-8AA3-CB637B91EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745BFC22-CAE0-4131-8AA3-CB637B91EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745BFC22-CAE0-4131-8AA3-CB637B91EB53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
