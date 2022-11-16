@@ -20,12 +20,13 @@ namespace Logging.NetCore {
 
         /// <summary>
         /// Format設定に使うフォーマット指定子たち
-        /// 0: false, 1~: true でフォーマットの必須を指定
         /// </summary>
         public enum FormatRequired {
             TimeStanp = 0x1,
             LogLevel = 0x2,
-            Message = 0x4
+            LogValue = 0x4,
+            Message = 0x8,
+            Count = 0x10,
         }
 
         internal bool CheckFormat() {
@@ -33,15 +34,9 @@ namespace Logging.NetCore {
             int errFlag = 0;
             string format = this.Format;
 
-            // 必須項目のチェック用例示フラグ
-            errFlag |= (int)FormatRequired.TimeStanp;
-            errFlag |= (int)FormatRequired.LogLevel;
-            errFlag |= (int)FormatRequired.Message;
-
-            // 必須項目のチェック用フラグ
-            flag |= format.Contains(FormatComps.TimeStamp) ? (int)FormatRequired.TimeStanp : 0;
-            flag |= format.Contains(FormatComps.LogLevel) ? (int)FormatRequired.LogLevel : 0;
-            flag |= format.Contains(FormatComps.Message) ? (int)FormatRequired.Message : 0;
+            foreach(FormatRequired val in Enum.GetValues(typeof(FormatRequired))) {
+                formatFlag |= format.Contains(Enum.GetName(typeof(FormatRequired), val)) ? (int)val : 0;
+            }
 
             // フラグの値はEnumからとってきてるので大丈夫なはず
             if (errFlag != flag) {
@@ -63,6 +58,13 @@ namespace Logging.NetCore {
 
             string logMsg = this.Format;
 
+            foreach (FormatRequired val in Enum.GetValues(typeof(FormatRequired))) {
+                if((formatFlag & (int)val) > 0) {
+                    switch (val) {
+                    }
+                }
+            }
+
             if ((formatFlag & (int)FormatRequired.TimeStanp) > 0) {
                 logMsg = logMsg.Replace("{asctime}", DateTime.Now.ToString(this.DateFormat));
             }
@@ -82,13 +84,19 @@ namespace Logging.NetCore {
     /// </summary>
     public static class FormatComps {
         public static string TimeStamp {
-            get { return "{asctime}"; }
+            get { return Formatter.FormatRequired.TimeStanp.ToString(); }
         }
         public static string LogLevel {
-            get { return "{level}"; }
+            get { return Formatter.FormatRequired.LogValue.ToString(); }
         }
         public static string Message {
-            get { return "{message}"; }
+            get { return Formatter.FormatRequired.Message.ToString(); }
+        }
+        public static string LogValue {
+            get { return Formatter.FormatRequired.LogValue.ToString(); }
+        }
+        public static string Count {
+            get { return Formatter.FormatRequired.Count.ToString(); }
         }
     }
 }
