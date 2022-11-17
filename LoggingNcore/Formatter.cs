@@ -60,7 +60,18 @@ namespace Logging.NetCore {
 
             foreach (FormatRequired val in Enum.GetValues(typeof(FormatRequired))) {
                 if((formatFlag & (int)val) > 0) {
-                    switch (val) {
+                    switch ((int)val) {
+                        case (int)FormatRequired.TimeStanp:
+                            logMsg = logMsg.Replace(Formatter.FormatRequired.TimeStanp.ToString(), DateTime.Now.ToString(this.DateFormat));
+                            break;
+                        case (int)FormatRequired.LogLevel:
+                            logMsg = logMsg.Replace(FormatRequired.LogLevel.ToString(), level.ToString());
+                            break;
+                        case (int)FormatRequired.LogValue:
+                            // TODO: ログレベルの概要を表示する用の属性かなんかを作る
+                            logMsg = logMsg.Replace(FormatRequired.LogValue.ToString(), level.ToString());
+                            break;
+
                     }
                 }
             }
@@ -82,20 +93,20 @@ namespace Logging.NetCore {
     /// <summary>
     /// FormatterのFormat指定用
     /// </summary>
-    public static class FormatComps {
-        public static string TimeStamp {
-            get { return Formatter.FormatRequired.TimeStanp.ToString(); }
+    internal static class FormatComps {
+        internal static string TimeStamp {
+            get { return DateTime.Now.ToString(); }
         }
-        public static string LogLevel {
+        internal static string LogLevel {
             get { return Formatter.FormatRequired.LogValue.ToString(); }
         }
-        public static string Message {
+        internal static string Message {
             get { return Formatter.FormatRequired.Message.ToString(); }
         }
-        public static string LogValue {
+        internal static string LogValue {
             get { return Formatter.FormatRequired.LogValue.ToString(); }
         }
-        public static string Count {
+        internal static string Count {
             get { return Formatter.FormatRequired.Count.ToString(); }
         }
     }
